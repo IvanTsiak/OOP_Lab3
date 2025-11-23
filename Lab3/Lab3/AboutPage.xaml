@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab3.AboutPage"
+             Title="Про програму">
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+        <Label Text="Лабораторна робота №3" FontSize="24" FontAttributes="Bold"/>
+        <Label Text="Виконав: Студент Групи КН-24" FontSize="18"/>
+        <Label Text="Цяк Іван Петрович" FontSize="18"/>
+        <Label Text="Рік: 2025" FontSize="18"/>
+        <Label Text="Опис: Диспетчер файлів JSON для газети факультету."/>
+
+        <Button Text="Закрити" Clicked="OnCloseClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Lab3.Models"
+             x:Class="Lab3.MainPage"
+             Title="Диспетчер JSON">
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="10" RowSpacing="10">
+
+        <HorizontalStackLayout Grid.Row="0" Spacing="10">
+            <Button Text="Відкрити JSON" Clicked="OnOpenClicked"/>
+            <Button Text="Зберегти як" Clicked="OnSaveAsClicked"/>
+            <Button Text="Про програму" Clicked="OnAboutClicked" BackgroundColor="LightGrey"/>
+        </HorizontalStackLayout>
+
+        <Frame Grid.Row="1" Padding="10" BackgroundColor="#1e1e1e">
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Пошук та фільтрація" FontAttributes="Bold"/>
+                <Grid ColumnDefinitions="*, *, *">
+                    <Entry x:Name="SearchTitle" Placeholder="Назва..." TextChanged="OnSearchChanged" Grid.Column="0"/>
+                    <Entry x:Name="SearchAuthor" Placeholder="Автор..." TextChanged="OnSearchChanged" Grid.Column="1"/>
+                    <Picker x:Name="FilterCategory" SelectedIndexChanged="OnSearchChanged" Grid.Column="2">
+                        <Picker.Items>
+                            <x:String>Всі</x:String>
+                            <x:String>Новини</x:String>
+                            <x:String>Наука</x:String>
+                            <x:String>Оголошення</x:String>
+                        </Picker.Items>
+                        <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                    </Picker>
+                </Grid>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Grid Grid.Row="2" RowDefinitions="30, *" VerticalOptions="Fill">
+            <Grid Grid.Row="0" ColumnDefinitions="2*, 1.5*, 1*, 1*, 1.2*" BackgroundColor="#333">
+                <Label Text="Назва" FontAttributes="Bold" VerticalOptions="Center" Margin="5,0"/>
+                <Label Text="Автор" FontAttributes="Bold" VerticalOptions="Center" Grid.Column="1"/>
+                <Label Text="Кафедра" FontAttributes="Bold" VerticalOptions="Center" Grid.Column="2"/>
+                <Label Text="Категорія" FontAttributes="Bold" VerticalOptions="Center" Grid.Column="3"/>
+                <Label Text="Дії" FontAttributes="Bold" VerticalOptions="Center" Grid.Column="4" HorizontalOptions="Center"/>
+            </Grid>
+
+            <CollectionView x:Name="ArticlesList" Grid.Row="1" SelectionMode="Single" SelectionChanged="OnArticleSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Article">
+
+                        <Grid ColumnDefinitions="2*, 1.5*, 1*, 1*, 1.2*" Padding="5" HeightRequest="50">
+
+                            <Label Text="{Binding Title}" VerticalOptions="Center" FontAttributes="Bold"/>
+                            <Label Text="{Binding Author}" Grid.Column="1" VerticalOptions="Center"/>
+                            <Label Text="{Binding Department}" Grid.Column="2" VerticalOptions="Center"/>
+                            <Label Text="{Binding Category}" Grid.Column="3" VerticalOptions="Center" TextColor="SkyBlue"/>
+
+                            <HorizontalStackLayout Grid.Column="4" Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Button Text="✏" 
+                                        Clicked="OnEditClicked" 
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="Yellow" 
+                                        Padding="0" 
+                                        HeightRequest="35" WidthRequest="40"/>
+
+                                <Button Text="🗑️" 
+                                        Clicked="OnDeleteClicked" 
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="Red" 
+                                        Padding="0" 
+                                        HeightRequest="35" WidthRequest="40"/>
+                            </HorizontalStackLayout>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <Button Grid.Row="3" Text="Додати запис" Clicked="OnAddClicked" BackgroundColor="Green"/>
+    </Grid>
+</ContentPage>

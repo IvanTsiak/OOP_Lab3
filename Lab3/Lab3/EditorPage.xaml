@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab3.EditorPage"
+             Title="Редагування">
+    <VerticalStackLayout Spacing="15" Padding="20" VerticalOptions="Center">
+        <Label Text="Редагування статті" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+        <Entry x:Name="TitleEnt" Placeholder="Назва статті"/>
+        <Entry x:Name="AuthorEnt" Placeholder="Автор"/>
+        <Entry x:Name="DeptEnt" Placeholder="Кафедра"/>
+
+        <Picker x:Name="CatPicker" Title="Категорія">
+            <Picker.Items>
+                <x:String>Новини</x:String>
+                <x:String>Наука</x:String>
+                <x:String>Оголошення</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Editor x:Name="ContentEditor" Placeholder="Текст статті..." HeightRequest="100"/>
+
+        <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+            <Button Text="Зберегти" Clicked="OnSaveClicked" BackgroundColor="Green" Grid.Column="0"/>
+            <Button Text="Скасувати" Clicked="OnCancelClicked" BackgroundColor="Gray" Grid.Column="1"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
