@@ -3,6 +3,8 @@ using Lab3.Models;
 using Lab3.Services;
 using System.Collections.ObjectModel;
 using System.Text.Json;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace Lab3
 {
@@ -105,7 +107,10 @@ namespace Lab3
             try
             {
                 using var stream = new MemoryStream();
-                var options = new JsonSerializerOptions { WriteIndented = true };
+                var options = new JsonSerializerOptions { 
+                    WriteIndented = true,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic)
+                };
                 await JsonSerializer.SerializeAsync(stream, _allArticles, options);
                 stream.Position = 0;
 
