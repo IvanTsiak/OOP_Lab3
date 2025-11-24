@@ -5,7 +5,7 @@
              Title="Про програму">
     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
         <Label Text="Лабораторна робота №3" FontSize="24" FontAttributes="Bold"/>
-        <Label Text="Виконав: Студент Групи КН-24" FontSize="18"/>
+        <Label Text="Виконав: Студент Групи К-24" FontSize="18"/>
         <Label Text="Цяк Іван Петрович" FontSize="18"/>
         <Label Text="Рік: 2025" FontSize="18"/>
         <Label Text="Опис: Диспетчер файлів JSON для газети факультету."/>
